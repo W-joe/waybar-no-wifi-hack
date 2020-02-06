@@ -1,0 +1,14 @@
+--- /tmp/waybar/src/modules/network.cpp	2020-02-06 13:19:14.355318923 +0100
++++ src/modules/network.cpp	2020-02-06 13:41:46.165116467 +0100
+@@ -190,9 +190,11 @@
+     throw std::runtime_error("Can't set callback");
+   }
+   nl80211_id_ = genl_ctrl_resolve(sock_, "nl80211");
++  /* HACK: Don't disable network module if a wifi adapter can't be found.
+   if (nl80211_id_ < 0) {
+     throw std::runtime_error("Can't resolve nl80211 interface");
+   }
++  */
+ }
+ 
+ void waybar::modules::Network::worker() {
